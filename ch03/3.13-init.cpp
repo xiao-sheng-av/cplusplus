@@ -12,3 +12,5 @@ int main()
     cout << "debt = " << debt << endl;
     return 0;
 }
+
+//{}初始化：列表初始化，列表初始化不允许缩窄
