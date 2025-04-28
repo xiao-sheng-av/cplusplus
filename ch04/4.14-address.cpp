@@ -1,4 +1,3 @@
-//&地址运算符
 #include <iostream>
 int main()
 {
