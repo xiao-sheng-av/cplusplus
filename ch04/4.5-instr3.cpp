@@ -9,7 +9,6 @@ int main()
     cout << "Enter your name:\n";
     cin.get(name, ArSize).get();
     cout << "Enter your favorite dessert:\n";
-    cin.clear();
     cin.get(dessert, ArSize).get();
     cout << "I have some delicious " << dessert;
     cout << " for you, " << name << ".\n";
