@@ -16,7 +16,8 @@ int main()
     cout << "Enter price: $";
     cin >> ps->price;
     cout << "Name: " << (*ps).name << endl;
-    cout << "Volume: " << ps->price << endl;
+    cout << "Volume: " << ps->volume << " cubic feet\n";
+    cout << "Price: " << ps->price << endl;
     delete ps;
     return 0;
 
