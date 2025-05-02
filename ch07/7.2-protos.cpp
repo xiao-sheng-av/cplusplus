@@ -1,4 +1,5 @@
 #include <iostream>
+//函数原型
 void cheers(int);
 double cube(double x);
 int main()
