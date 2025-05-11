@@ -26,6 +26,5 @@ int main()
     cout << lesser(x, y) << endl;   //#1
     cout << lesser<>(m, n) << endl; //#1
     cout << lesser<int>(x, y) << endl; //#1
-
     return 0;
 }
