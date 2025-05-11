@@ -22,6 +22,7 @@ int main()
 
     return 0;
 }
+
 template <typename T>
 void Swap(T &a, T &b)
 {
