@@ -6,6 +6,7 @@ template <typename T>
 void Swap(T *a, T *b, int n);
 void show(int a[]);
 const int Lim = 8;
+
 int main()
 {
     using namespace std;
