@@ -50,3 +50,4 @@ char *left(const char *str, int n)
         p[i++] = '\0';
     return p;
 }
+
