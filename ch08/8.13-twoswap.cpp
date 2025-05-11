@@ -34,7 +34,6 @@ int main()
     cout << "After job swapping:\n";
     Show(sue);
     Show(sidney);
-
     return 0;
 }
 
