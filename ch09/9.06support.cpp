@@ -17,6 +17,6 @@ void local()
 {
     double warming = 0.8;
     cout << "Local warming = " << warming << " degrees.\n";
-    cout << "But global warming = " << warming;
+    cout << "But global warming = " << ::warming;
     cout << " degrees.\n";
 }
