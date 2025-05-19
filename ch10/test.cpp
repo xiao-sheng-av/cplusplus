@@ -18,4 +18,39 @@
 //     usr.show();
 //     return 0;
 // }
+//
+// 下面是一个非常简单的类定义：它使用了一个string对象和一个字符数组，让您能够比较它们的用法。
+// class Person{
+// private:
+//     static const LIMIT = 25;
+//     string lname;
+//     char fname[LIMIT];
+// public:
+//     Person() {lname = ""; fname[0] = '\0'}
+//     Person(const string &ln, const char *fn = "Heyyou");
+//     void show() const;
+//     void FormalShow() const;
+// }
+// 请提供未定义的方法的代码，以完成这个类的实现。
+// 再编写一个使用这个类的程序，它使用了三种可能的构造函数调用（没有参数、一个参数和两个参数）以及两种显示方法。
+// 下面是一个使用这些构造函数和
+// 方法的例子：
+// Person one;
+// Person two("Smythecraft");
+// Person three("Dimwiddy", "Sam");
+// one.show();
+// cout << endl;
+// one.FormalShow();
 
+// #include "test-2.h"
+// #include <iostream>
+// int main()
+// {
+//     Person one;
+//     Person two = Person("Smythecraft");
+//     Person three("Dimwiddy", "Sam");
+//     three.show();
+//     std::cout << endl;
+//     three.FormalShow();
+//     return 0;
+// }
