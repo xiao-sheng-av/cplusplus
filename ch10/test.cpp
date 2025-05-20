@@ -1,12 +1,12 @@
-//为复习题5描述的类提供方法定义，并编写一个小程序来演示所有的特性。
-//5．定义一个类来表示银行帐户。数据成员包括储户姓名、账号
-//（使用字符串）和存款。成员函数执行如下操作：
-//创建一个对象并将其初始化；
-//显示储户姓名、账号和存款；
-//存入参数指定的存款；
-//取出参数指定的款项。
-//建立test-1.h和test-1.cpp完成
-// #include "test-1.h"
+// 为复习题5描述的类提供方法定义，并编写一个小程序来演示所有的特性。
+// 5．定义一个类来表示银行帐户。数据成员包括储户姓名、账号
+// （使用字符串）和存款。成员函数执行如下操作：
+// 创建一个对象并将其初始化；
+// 显示储户姓名、账号和存款；
+// 存入参数指定的存款；
+// 取出参数指定的款项。
+// 建立test-1.h和test-1.cpp完成
+//  #include "test-1.h"
 
 // int main()
 // {
@@ -88,3 +88,48 @@
 //     jie.showSales();
 //     return 0;
 // }
+
+// 考虑下面的结构声明：
+// struct customer{
+//     char fullname[35];
+//     double payment;
+// };
+// 编写一个程序，它从栈中添加和删除customer结构（栈用Stack类声明表示）。
+// 每次customer结构被删除时，其payment的值都被加入到总数中，并报告总数。
+// 注意：应该可以直接使用Stack类而不作修改;
+// 只需修改typedef声明，使Item的类型为customer，而不是unsigned long即可。
+
+// #include "test-5.h"
+// #include <iostream>
+// int main()
+// {
+//     Stack jie = Stack();
+//     customer u = {"jiegege", 23.4};
+//     customer s;
+//     if (jie.isfull())
+//         std::cout << "栈已满" << std::endl;
+//     else
+//         jie.pop(u);
+
+//     if (jie.isempty())
+//         std::cout << "栈为空" << std::endl;
+//     else
+//         jie.push(s);
+
+//     std::cout << s.fullname << "  " << s.payment << std::endl;
+//     return 0;
+// }
+
+// 下面是一个类声明：
+// class Move
+// {
+// private:
+//     double x;
+//     double y;
+// public:
+//     Move(double a = 0, double b = 0);
+//     showmove() const;
+//     Move add(const Move &m) const;
+//     reset(double a = 0; double b = 0);
+// };
+// 请提供成员函数的定义和测试这个类的程序。
