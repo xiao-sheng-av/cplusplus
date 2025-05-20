@@ -40,7 +40,7 @@ void golf::handicap_f(int hc)
         handicap = hc;
 }
 
-void golf::showgolf()
+void golf::showgolf() const
 {
     std::cout << "fullname: " << fullname << "  handicap: " << handicap << std::endl;
 }

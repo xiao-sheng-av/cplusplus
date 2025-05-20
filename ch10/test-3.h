@@ -10,5 +10,5 @@ public:
     golf(const char *name, int hc);
     int setgolf();
     void handicap_f(int hc);
-    void showgolf();
+    void showgolf() const;
 };
