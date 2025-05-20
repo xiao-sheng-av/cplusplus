@@ -130,6 +130,35 @@
 //     Move(double a = 0, double b = 0);
 //     showmove() const;
 //     Move add(const Move &m) const;
-//     reset(double a = 0; double b = 0);
+//     reset(double a = 0, double b = 0);
 // };
 // 请提供成员函数的定义和测试这个类的程序。
+
+// #include "test-6.h"
+// int main()
+// {
+//     Move jiege = Move(4, 10);
+//     Move jie(3, 8);
+//     jiege.showmove();
+
+//     Move temp = jiege.add(jie);
+//     temp.showmove();
+
+//     jiege.reset(0, 0);
+//     jiege.showmove();
+//     return 0;
+// }
+
+
+// Betelgeusean plorg有这些特征。
+// 数据：
+// plorg的名称不超过19个字符；
+// plorg有满意指数（CI），这是一个整数。
+// 操作：
+// 新的plorg将有名称，其CI值为50；
+// plorg的CI可以修改；
+// plorg可以报告其名称和CI；
+// plorg的默认名称为“Plorga”。
+// 请编写一个Plorg类声明（包括数据成员和成员函数原型）来表示
+// plorg，并编写成员函数的函数定义。然后编写一个小程序，以演示
+// Plorg类的所有特性。
