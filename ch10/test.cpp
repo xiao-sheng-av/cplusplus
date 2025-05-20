@@ -162,3 +162,17 @@
 // 请编写一个Plorg类声明（包括数据成员和成员函数原型）来表示
 // plorg，并编写成员函数的函数定义。然后编写一个小程序，以演示
 // Plorg类的所有特性。
+
+// #include "test-7.h"
+// int main()
+// {
+//     plorg jie;
+//     jie.show();
+
+//     plorg jiege = plorg("abcdefghijklmnopqrstuvwxyz", 100);
+//     jiege.show();
+//     jiege.set_CI(88);
+//     jiege.show();
+
+//     return 0;
+// }
