@@ -67,10 +67,52 @@
 // 对Vector类的头文件（程序清单11.13）和实现文件（程序清单11.14）进行修改，使其不再存储矢量的长度和角度，而是在magval( )和angval( )被调用时计算它们。
 // 应保留公有接口不变（公有方法及其参数不变），但对私有部分（包括一些私有方法）和方法实现进行修改。
 // 然后，使用程序清单11.15对修改后的版本进行测试，结果应该与以前相同，因为Vector类的公有接口与原来相同。
+// #include <iostream>
+// #include <cstdlib>
+// #include <ctime>
+// #include "test-02.h"
+// int main()
+// {
+//     using namespace std;
+//     using VECTOR::Vector;
+//     srand(time(0));
+//     double direction;
+//     Vector step;
+//     Vector result(0.0, 0.0);
+//     unsigned long steps = 0;
+//     double target;
+//     double dstep;
+//     cout << "Enter target distance (q to quit): ";
+//     while(cin >> target)
+//     {
+//         cout << "Enter step length: ";
+//         if(!(cin >> dstep))
+//             break;
+//         while(result.magval() < target)
+//         {
+//             direction = rand() % 360;
+//             step.reset(dstep, direction, Vector::POL);
+//             result = result + step;
+//             steps++;
+//         }
+//         cout << "After " << steps << " steps, the subject "
+//                 "has the following location:\n";
+//         steps = 0;
+//         result.reset(0.0, 0.0);
+//         cout << "Enter target distance (q to quit): ";
+//     }
+//     cout << "Bye!\n";
+//     cin.clear();
+//     while(cin.get() != '\n')
+//         continue;
+//     return 0;
+// }
+
+// 修改程序清单11.15，使之报告N次测试中的最高、最低和平均步数（其中N是用户输入的整数），而不是报告每次测试的结果。
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include "test-02.h"
+#include "11.13-vect.h"
 int main()
 {
     using namespace std;
@@ -82,28 +124,51 @@ int main()
     unsigned long steps = 0;
     double target;
     double dstep;
-    cout << "Enter target distance (q to quit): ";
-    while(cin >> target)
+    int n, min = 0, max = 0, sum = 0;
+    string c;
+    cout << "请输入循环次数：";
+    while (!(cin >> n))
     {
-        cout << "Enter step length: ";
-        if(!(cin >> dstep))
-            break;
-        while(result.magval() < target)
+        cin.clear();
+        getline(cin, c);
+        cout << "请输入一个整数：";
+    }
+    cout << "请输入目标值：";
+    while (!(cin >> target))
+    {
+        cin.clear();
+        getline(cin, c);
+        cout << "请输入一个整数：";
+    }
+    cout << "请输入步长: ";
+    while (!(cin >> dstep))
+    {
+        cin.clear();
+        getline(cin, c);
+        cout << "请输入一个整数：";
+    }
+    for (int i = 0; i < n; i++)
+    {
+
+        while (result.magval() < target)
         {
             direction = rand() % 360;
             step.reset(dstep, direction, Vector::POL);
             result = result + step;
             steps++;
         }
-        cout << "After " << steps << " steps, the subject "
-                "has the following location:\n";
+        if(i == 0) min = steps;
+        sum += steps;
+        if(steps > max) max = steps;
+        else if(steps < min) min = steps;
+        cout << "steps = " << steps << endl;
         steps = 0;
         result.reset(0.0, 0.0);
-        cout << "Enter target distance (q to quit): ";
     }
+    cout << "Max = " << max << "  Min = " << min << "  average = " << sum / n << endl;
     cout << "Bye!\n";
     cin.clear();
-    while(cin.get() != '\n')
+    while (cin.get() != '\n')
         continue;
     return 0;
 }

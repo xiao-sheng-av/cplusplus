@@ -17,7 +17,7 @@ public:
     Time operator-(const Time &t) const;
     Time operator*(double n) const;
     friend Time operator*(double m, const Time &t)
-        { return t * m; };
+        { return t * m; }
     friend std::ostream &operator<<(std::ostream &os, const Time &t);
 };
 
