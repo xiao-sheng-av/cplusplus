@@ -174,24 +174,47 @@
 // }
 
 // 重新编写最后的Time类示例（程序清单11.10、程序清单11.11和程序清单11.12），使用友元函数来实现所有的重载运算符。
-#include <iostream>
-#include "test-04.h"
+// #include <iostream>
+// #include "test-04.h"
 
+// int main()
+// {
+//     using std::cout;
+//     using std::endl;
+//     Time aida(3, 35);
+//     Time tosca(2, 48);
+//     Time temp;
+
+//     cout << "Aida and Tosca:\n";
+//     cout << aida << "; " << tosca << endl;
+//     temp = aida + tosca;
+//     cout << "Aida + Tosca: " << temp << endl;
+//     temp = aida * 1.17;
+//     cout << "Aida * 1.17: " << temp << endl;
+//     cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
+    
+//     return 0;
+// }
+
+// 重新编写Stonewt类（程序清单11.16和程序清单11.17），使它有一个状态成员，由该成员控制对象应转换为英石格式、整数磅格式还是浮点磅格式。
+// 重载<<运算符，使用它来替换show_stn( )和show_lbs( )方法。
+// 重载加法、减法和乘法运算符，以便可以对Stonewt值进行加、减、乘运算。
+// 编写一个使用所有类方法和友元的小程序，来测试这个类。
+
+#include "test-05.h"
+#include <iostream>
 int main()
 {
-    using std::cout;
-    using std::endl;
-    Time aida(3, 35);
-    Time tosca(2, 48);
-    Time temp;
+    Stonewt jie;
+    Stonewt x = Stonewt(200.8);
+    Stonewt y = Stonewt(20, 30.2);
+    std::cout << x << std::endl;
+    x.set_mode(Stonewt::int_pound);
+    std::cout << x << std::endl;
+    x.set_mode(Stonewt::double_pound);
+    std::cout << x << std::endl;
 
-    cout << "Aida and Tosca:\n";
-    cout << aida << "; " << tosca << endl;
-    temp = aida + tosca;
-    cout << "Aida + Tosca: " << temp << endl;
-    temp = aida * 1.17;
-    cout << "Aida * 1.17: " << temp << endl;
-    cout << "10.0 * Tosca: " << 10.0 * tosca << endl;
-    
-    return 0;
+    std::cout << " x + y  " << x + y << std::endl;
+    std::cout << " x - y  " << x - y << std::endl;
+    std::cout << " x * y  " << x * y << std::endl;
 }
