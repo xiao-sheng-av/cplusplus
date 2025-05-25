@@ -201,20 +201,66 @@
 // 重载加法、减法和乘法运算符，以便可以对Stonewt值进行加、减、乘运算。
 // 编写一个使用所有类方法和友元的小程序，来测试这个类。
 
-#include "test-05.h"
+// #include "test-05.h"
+// #include <iostream>
+// int main()
+// {
+//     Stonewt jie;
+//     Stonewt x = Stonewt(200.8);
+//     Stonewt y = Stonewt(20, 30.2);
+//     std::cout << x << std::endl;
+//     x.set_mode(Stonewt::int_pound);
+//     std::cout << x << std::endl;
+//     x.set_mode(Stonewt::double_pound);
+//     std::cout << x << std::endl;
+
+//     std::cout << " x + y  " << x + y << std::endl;
+//     std::cout << " x - y  " << x - y << std::endl;
+//     std::cout << " x * y  " << x * y << std::endl;
+//     return 0
+// }
+
+// 重新编写Stonewt类（程序清单11.16和程序清单11.17），重载全部6个关系运算符。
+// 运算符对pounds成员进行比较，并返回一个bool值。
+// 编写一个程序，它声明一个包含6个Stonewt对象的数组，并在数组声明中初始化前3个对象。
+// 然后使用循环来读取用于设置剩余3个数组元素的值。
+// 接着报告最小的元素、最大的元素以及大于或等于11英石的元素的数量（最简单的方法是创建一个Stonewt对象，并将其初始化为11英石，然后将其同其他对象进行比较）。
+
+#include "test-06.h"
 #include <iostream>
+#include <string>
 int main()
 {
-    Stonewt jie;
-    Stonewt x = Stonewt(200.8);
-    Stonewt y = Stonewt(20, 30.2);
-    std::cout << x << std::endl;
-    x.set_mode(Stonewt::int_pound);
-    std::cout << x << std::endl;
-    x.set_mode(Stonewt::double_pound);
-    std::cout << x << std::endl;
-
-    std::cout << " x + y  " << x + y << std::endl;
-    std::cout << " x - y  " << x - y << std::endl;
-    std::cout << " x * y  " << x * y << std::endl;
+    Stonewt jie[6] = 
+    {
+        Stonewt(200.8),
+        Stonewt(20, 20.3),
+        Stonewt(382.42)
+    };
+    Stonewt x = Stonewt(11, 0);
+    double temp;
+    std::string s_temp;
+    for (int i = 0; i < 3; i++)
+    {
+        std::cout << "请输入有效数字：";
+        while(!(std::cin >> temp))
+        {
+            std::cin.clear();
+            getline(std::cin, s_temp);
+            std::cout << "请输入有效数字: ";
+        }
+        jie[i+3] = Stonewt(temp);
+    }
+    
+    Stonewt Max = jie[0], Min = jie[0];
+    int count = 0;
+    for (int i = 0; i < 6; i++)
+    {
+        if(jie[i] > Max) Max = jie[i];
+        else if(jie[i] < Min) Min = jie[i];
+        if(jie[i] > x) count++;
+    }
+    std::cout << "Max " << Max << " Min " << Min << std::endl;
+    std::cout << "大于11石的元素的数量 = " << count << std::endl;
+    return 0;
 }
