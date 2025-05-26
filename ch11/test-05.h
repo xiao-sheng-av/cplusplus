@@ -22,7 +22,7 @@ public:
     Stonewt(); 
     void set_mode(Mode m);
     ~Stonewt();
-    friend std::ostream &operator<<(std::ostream &oc, const Stonewt &s);
+    friend std::ostream &operator<<(std::ostream &os, const Stonewt &s);
     Stonewt operator*(const Stonewt &s);
     Stonewt operator-(const Stonewt &s);
     Stonewt operator+(const Stonewt &s);

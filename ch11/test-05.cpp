@@ -45,21 +45,21 @@ void Stonewt::set_mode(Mode m)
     }
 }
 
-std::ostream &operator<<(std::ostream &oc, const Stonewt &s)
+std::ostream &operator<<(std::ostream &os, const Stonewt &s)
 {
     if(s.mode == Stonewt::int_stone)
     {
-        cout << "stone = " << s.stone << "\n";
+        os << "stone = " << s.stone << "\n";
     }
     else if(s.mode == Stonewt::int_pound)
     {
-        cout << "int pound = " << (int) s.pounds << "\n";
+        os << "int pound = " << (int) s.pounds << "\n";
     }
     else if(s.mode == Stonewt::double_pound)
     {
-        cout << "double pound = " << s.pounds << "\n";
+        os << "double pound = " << s.pounds << "\n";
     }
-    return oc;
+    return os;
 }
 
 Stonewt Stonewt::operator*(const Stonewt &s)
@@ -85,13 +85,4 @@ Stonewt Stonewt::operator+(const Stonewt &s)
     Stonewt temp = Stonewt(p);
     return temp;
 }
-// void Stonewt::show_stn() const
-// {
-//     cout << stone << " stone, " << pds_left << " pounds\n";
-// }
-
-// void Stonewt::show_lbs() const
-// {
-//     cout << pounds << " pounds\n";
-// }
 

@@ -11,21 +11,21 @@ complex::complex(double r, double p)
     imaginary = p;
 }
 
-std::istream &operator>>(std::istream &oc, complex &num)
+std::istream &operator>>(std::istream &os, complex &num)
 {
     std::cout << "real: ";
-    if(!(std::cin >> num.real))
-        return oc;
+    if(!(os >> num.real))
+        return os;
 
     std::cout << "imaginary: ";
-    std::cin >> num.imaginary;
+    os >> num.imaginary;
 
-    return oc;
+    return os;
 }
 
-std::ostream &operator<<(std::ostream &oc, const complex &num)
+std::ostream &operator<<(std::ostream &os, const complex &num)
 {
-    std::cout << "(" << num.real << ", " << num.imaginary << "i)\n";
+    os << "(" << num.real << ", " << num.imaginary << "i)\n";
 }
 
 complex complex::operator+(const complex &num) const

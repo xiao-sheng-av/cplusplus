@@ -56,8 +56,8 @@ bool Stonewt::operator!=(const Stonewt&s) const
     return pounds != s.pounds;
 }
 
-std::ostream &operator<<(std::ostream &oc, const Stonewt &s)
+std::ostream &operator<<(std::ostream &os, const Stonewt &s)
 {
-    std::cout << "pounds = " << s.pounds;
-    return oc;
+    os << "pounds = " << s.pounds;
+    return os;
 }

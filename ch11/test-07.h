@@ -9,8 +9,8 @@ private:
 public:
     complex();
     complex(double r, double p);
-    friend std::istream &operator>>(std::istream &oc, complex &num);
-    friend std::ostream &operator<<(std::ostream &oc, const complex &num);
+    friend std::istream &operator>>(std::istream &os, complex &num);
+    friend std::ostream &operator<<(std::ostream &os, const complex &num);
     complex operator+(const complex &num) const;
     complex operator-(const complex &num) const;
     complex operator*(const complex &num) const;

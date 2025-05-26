@@ -23,7 +23,7 @@ public:
     bool operator<=(const Stonewt&s) const;
     bool operator==(const Stonewt&s) const;
     bool operator!=(const Stonewt&s) const;
-    friend std::ostream &operator<<(std::ostream &oc, const Stonewt &s);
+    friend std::ostream &operator<<(std::ostream &os, const Stonewt &s);
 };
 
 #endif
