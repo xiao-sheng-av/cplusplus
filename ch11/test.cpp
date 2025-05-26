@@ -226,41 +226,76 @@
 // 然后使用循环来读取用于设置剩余3个数组元素的值。
 // 接着报告最小的元素、最大的元素以及大于或等于11英石的元素的数量（最简单的方法是创建一个Stonewt对象，并将其初始化为11英石，然后将其同其他对象进行比较）。
 
-#include "test-06.h"
+// #include "test-06.h"
+// #include <iostream>
+// #include <string>
+// int main()
+// {
+//     Stonewt jie[6] = 
+//     {
+//         Stonewt(200.8),
+//         Stonewt(20, 20.3),
+//         Stonewt(382.42)
+//     };
+//     Stonewt x = Stonewt(11, 0);
+//     double temp;
+//     std::string s_temp;
+//     for (int i = 0; i < 3; i++)
+//     {
+//         std::cout << "请输入有效数字：";
+//         while(!(std::cin >> temp))
+//         {
+//             std::cin.clear();
+//             getline(std::cin, s_temp);
+//             std::cout << "请输入有效数字: ";
+//         }
+//         jie[i+3] = Stonewt(temp);
+//     }
+    
+//     Stonewt Max = jie[0], Min = jie[0];
+//     int count = 0;
+//     for (int i = 0; i < 6; i++)
+//     {
+//         if(jie[i] > Max) Max = jie[i];
+//         else if(jie[i] < Min) Min = jie[i];
+//         if(jie[i] > x) count++;
+//     }
+//     std::cout << "Max " << Max << " Min " << Min << std::endl;
+//     std::cout << "大于11石的元素的数量 = " << count << std::endl;
+//     return 0;
+// }
+
+// 复数有两个部分组成：实数部分和虚数部分。
+// 复数的一种书写方式是：（3.0，4.0），其中，3.0是实数部分，4.0是虚数部分。
+// 假设a= (A, Bi)，c = (C, Di)，则下面是一些复数运算。
+// 加法：a + c = (A+C, (B+D)i)。
+// 减法：a – c = (A−C, (B−D)i)。
+// 乘法：a * c = (A*C−B*D, (A*D + B*C)i)。
+// 乘法::x*c = (x * C, x *Di)，其中x为实数。
+// 共轭：~a = (A, −Bi)。
+// 请定义一个复数类，以便下面的程序可以使用它来获得正确的结果。
+// 注意，必须重载运算符<<和>>。标准C++使用头文件complex提供
+// 了比这个示例更广泛的复数支持，因此应将自定义的头文件命名为
+// complex0.h，以免发生冲突。应尽可能使用const。
 #include <iostream>
-#include <string>
+using namespace std;
+#include "test-07.h"
 int main()
 {
-    Stonewt jie[6] = 
+    complex a(3.0, 4.0);
+    complex c;
+    cout << "Enter a complex number (q to quit):\n";
+    while(cin >> c)
     {
-        Stonewt(200.8),
-        Stonewt(20, 20.3),
-        Stonewt(382.42)
-    };
-    Stonewt x = Stonewt(11, 0);
-    double temp;
-    std::string s_temp;
-    for (int i = 0; i < 3; i++)
-    {
-        std::cout << "请输入有效数字：";
-        while(!(std::cin >> temp))
-        {
-            std::cin.clear();
-            getline(std::cin, s_temp);
-            std::cout << "请输入有效数字: ";
-        }
-        jie[i+3] = Stonewt(temp);
+        cout << "c is " << c << '\n';
+        cout << "complex conjugate is " << ~c << '\n';
+        cout << "a is " << a << '\n';
+        cout << "a + c is " << a + c << '\n';
+        cout << "a - c is " << a - c << '\n';
+        cout << "a * c is " << a * c << '\n';
+        cout << "2 * c is " << 2 * c << '\n';
+        cout << "Enter a complex number (q to quit):\n";
     }
-    
-    Stonewt Max = jie[0], Min = jie[0];
-    int count = 0;
-    for (int i = 0; i < 6; i++)
-    {
-        if(jie[i] > Max) Max = jie[i];
-        else if(jie[i] < Min) Min = jie[i];
-        if(jie[i] > x) count++;
-    }
-    std::cout << "Max " << Max << " Min " << Min << std::endl;
-    std::cout << "大于11石的元素的数量 = " << count << std::endl;
+    cout << "Done!\n";
     return 0;
 }
