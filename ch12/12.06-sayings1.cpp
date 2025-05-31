@@ -41,7 +41,7 @@ int main()
             int first = 0;
             for (i = 1; i < total; i++)
             {
-                if (sayings[i].lenght() < sayings[shortest].lenght())
+                if (sayings[i].length() < sayings[shortest].length())
                     shortest = i;
                 if (sayings[i] < sayings[first])
                     first = i;

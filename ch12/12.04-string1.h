@@ -17,7 +17,7 @@ public:
     //拷贝构造函数
     String(const String &);
     ~String();
-    int lenght() const { return len; }
+    int length() const { return len; }
     //重载赋值运算符
     String &operator=(const String&);
     String &operator=(const char *);
