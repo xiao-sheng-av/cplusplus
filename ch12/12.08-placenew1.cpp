@@ -29,7 +29,7 @@ int main()
     pc1->Show();
 
     JustTesting *pc3, *pc4;
-    //可以使用delete pc3,但不能使用delete pc4
+    //可以使用delete pc4,但不能使用delete pc3
     pc3 = new (buffer) JustTesting("Bad Idea", 6);
     pc4 = new JustTesting("Heap2", 10);
 
