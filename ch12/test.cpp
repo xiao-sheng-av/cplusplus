@@ -10,7 +10,7 @@
 //     Cow &operator=(const Cow &c);
 //     void ShowCow() const;
 // };
-//给这个类提供实现，并编写一个使用所有成员函数的小程序
+// 给这个类提供实现，并编写一个使用所有成员函数的小程序
 // #include "test-cow.h"
 // #include <iostream>
 
@@ -71,7 +71,7 @@
 //         }
 //         if (success)
 //             break;
-//         else 
+//         else
 //             cout << "Try again\n";
 //     }
 //     cout << "Bye\n";
@@ -81,28 +81,112 @@
 // 3.新编写程序清单10.7和程序清单10.8描述的Stock类，使之使用动态分配的内存，而不是string类对象来存储股票名称。
 // 另外，使用重载的operator<<()定义代替show()成员函数。
 // 再使用程序清单10.9测试新的定义程序。
-#include <iostream>
-#include "test-stock.h"
+// #include <iostream>
+// #include "test-stock.h"
 
-const int STKS = 4;
+// const int STKS = 4;
+// int main()
+// {
+//     Stock stocks[STKS] = {
+//         Stock("NanoSmart", 12, 20.0),
+//         Stock("Boffo Objects", 200, 2.0),
+//         Stock("Monolithic Obelisks", 130, 3.25),
+//         Stock("Fleep Enterprises", 60, 6.5)
+//     };
+
+//     std::cout << "Stock holdings:\n";
+//     int st;
+//     for (st = 0; st < STKS; st++)
+//        std::cout << stocks[st] << std::endl;
+
+//     const Stock *top = &stocks[0];
+//     for (st = 1; st < STKS; st++)
+//         top = &top->topval(stocks[st]);
+//     std::cout << "\nMost valuable holding:\n";
+//     std::cout << *top << std::endl;
+//     return 0;
+// }
+
+// 4.请看下面程序清单10.10定义的Stack类的变量：
+// typedef unsigned long Item;
+
+// class Stack
+// {
+// private:
+//     enum {MAX = 10};
+//     Item * pitems;
+//     int size;
+//     int top;
+// public:
+//     Stack(int n = MAX);
+//     Stack(const Stack &st);
+//     ~Stack();
+//     bool isempty() const;
+//     bool isfull() const;
+//     bool push(const Item &item);
+//     bool pop(Item &item);
+//     Stack &operator=(const Stack &st);
+// };
+// 正如私有成员表明的，这个类使用动态分配的数组来保存栈项。请
+// 重新编写方法，以适应这种新的表示法，并编写一个程序来演示所有的
+// 方法，包括复制构造函数和赋值运算符。
+#include "test-stack.h"
+#include <iostream>
 int main()
 {
-    Stock stocks[STKS] = {
-        Stock("NanoSmart", 12, 20.0),
-        Stock("Boffo Objects", 200, 2.0),
-        Stock("Monolithic Obelisks", 130, 3.25),
-        Stock("Fleep Enterprises", 60, 6.5)
-    };
-
-    std::cout << "Stock holdings:\n";
-    int st;
-    for (st = 0; st < STKS; st++)
-       std::cout << stocks[st] << std::endl;
-
-    const Stock *top = &stocks[0];
-    for (st = 1; st < STKS; st++)
-        top = &top->topval(stocks[st]);
-    std::cout << "\nMost valuable holding:\n";
-    std::cout << *top << std::endl;
+    using namespace std;
+    Stack st;
+    char ch;
+    unsigned long po;
+    cout << "Please enter A to add a purchase order,\n"
+         << "P to process a PO, or Q to quit.\n";
+    while (cin >> ch && toupper(ch) != 'Q')
+    {
+        while (cin.get() != '\n')
+            continue;
+        // 判断字符是否为字母
+        if (!isalpha(ch))
+        {
+            cout << '\a';
+            continue;
+        }
+        switch (ch)
+        {
+        case 'A':
+        case 'a':
+            cout << "Enter a PO number to add: ";
+            cin >> po;
+            if (st.isfull())
+                cout << "Stack already full\n";
+            else
+                st.push(po);
+            break;
+        case 'P':
+        case 'p':
+            if (st.isempty())
+                cout << "stack already empty\n";
+            else
+            {
+                st.pop(po);
+                cout << "PO #" << po << " popped\n";
+            }
+            break;
+        }
+        cout << "Please enter A to add a purchase order,\n"
+             << "P to process a PO, or Q to quit.\n";
+    }
+    Stack st1(st);
+    Stack st2 = st;
+    while (st1.isempty() == false)
+    {
+        st1.pop(po);
+        cout << "PO #" << po << " popped\n";
+    }
+    while (st2.isempty() == false)
+    {
+        st2.pop(po);
+        cout << "PO #" << po << " popped\n";
+    }
+    cout << "Bye\n";
     return 0;
 }
