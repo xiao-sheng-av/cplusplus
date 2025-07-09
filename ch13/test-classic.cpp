@@ -37,6 +37,8 @@ void Cd::Report() const
 
 Cd &Cd::operator=(const Cd &d)
 {
+    if (&d == this)
+        return *this;
     strcpy(performers, d.performers);
     strcpy(label, d.label);  
     selections = d.selections;
@@ -58,6 +60,9 @@ void Classic::Report() const
 
 Classic &Classic::operator=(const Classic & c)
 {
+    if (&c == this)
+        return *this;
     Cd::operator=(c);
     strcpy(opus, c.opus);
+    return *this;
 }
