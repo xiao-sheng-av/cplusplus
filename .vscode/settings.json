@@ -49,6 +49,7 @@
         "random": "cpp",
         "numbers": "cpp",
         "ranges": "cpp",
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "valarray": "cpp"
     }
 }
