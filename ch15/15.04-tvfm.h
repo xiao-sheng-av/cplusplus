@@ -34,7 +34,7 @@ public:
     enum {Antenna, Cable};
     enum {TV, DVD};
     
-    Tv(int s = Off, int mc = 125) : state(s), volume(5), maxchannel(mc), channel(2), mode(Cabel), input(TV) {}
+    Tv(int s = Off, int mc = 125) : state(s), volume(5), maxchannel(mc), channel(2), mode(Cable), input(TV) {}
     void onoff() {state = (state == On) ? Off : On;}
     bool ison() const {return state ==On;}
     bool volup();
