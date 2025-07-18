@@ -24,12 +24,76 @@
 // 问题的性质。异常对象不用存储错误的参数值，而只需支持what( )方
 // 法。
 
+// #include <iostream>
+// #include <cmath>
+// #include "test-exc_mean.h"
+
+// double hmean(double a, double b);
+// double gmean(double a, double b);
+// int main()
+// {
+//     using std::cout;
+//     using std::cin;
+//     using std::endl;
+
+//     double x, y, z;
+
+//     cout << "Enter two numbers: ";
+//     while (cin >> x >> y)
+//     {
+//         try {
+//             z = hmean(x, y);
+//             cout << "Harmonic mean of " << x << " and " << y
+//                  << " is " << z << endl;
+//             cout << "Geometric mean of " << x << " and " << y
+//                  << " is " << gmean(x, y) << endl;
+//             cout << "Enter next set of numbers <q to quit>: ";
+//         }
+//         catch (bad_hmean & bg)
+//         {
+//             bg.what();
+//             cout << "Try again.\n";
+//             continue;
+//         }
+//         catch (bad_gmean & hg)
+//         {
+//             hg.what();
+//             cout << "Values used: " << hg.v1 << ", "
+//                  << hg.v2 << endl;
+//             cout << "Sorry, you don't get to play any more.\n";
+//             break;
+//         }
+//     }
+//     cout << "Bye!\n";
+//     return 0;
+// }
+
+// double hmean(double a, double b)
+// {
+//     if (a == -b)
+//         throw bad_hmean(a, b);
+//     return 2.0 * a * b / (a + b);
+// }
+
+// double gmean(double a, double b)
+// {
+//     if ( a < 0 || b < 0)
+//         throw bad_gmean(a, b);
+//     return std::sqrt(a * b);
+// }
+
+// 3．这个练习与编程练习2相同，但异常类是从一个这样的基类派生
+// 而来的：它是从logic_error派生而来的，并存储两个参数值。异常类应
+// 该有一个这样的方法：报告这些值以及函数名。程序使用一个catch块来
+// 捕获基类异常，其中任何一种从该基类异常派生而来的异常都将导致循
+// 环结束。
 #include <iostream>
 #include <cmath>
-#include "test-exc_mean.h"
+#include "test-exc_mean2.h"
 
 double hmean(double a, double b);
 double gmean(double a, double b);
+double bmean(double a, double b);
 int main()
 {
     using std::cout;
@@ -45,23 +109,25 @@ int main()
             z = hmean(x, y);
             cout << "Harmonic mean of " << x << " and " << y
                  << " is " << z << endl;
+            z = gmean(x, y);
             cout << "Geometric mean of " << x << " and " << y
-                 << " is " << gmean(x, y) << endl;
+                 << " is " << z << endl;
+            z = bmean(x, y);
+            cout << "Base mean of " << x << " and " << y
+                 << " is " << z << endl;
             cout << "Enter next set of numbers <q to quit>: ";
         }
-        catch (bad_hmean & bg)
+        catch (base & bg)
         {
-            bg.what();
-            cout << "Try again.\n";
-            continue;
-        }
-        catch (bad_gmean & hg)
-        {
-            hg.what();
-            cout << "Values used: " << hg.v1 << ", "
-                 << hg.v2 << endl;
-            cout << "Sorry, you don't get to play any more.\n";
-            break;
+            if (typeid(base) == typeid(bg))
+            {
+                cout << bg.what() << endl;
+                bg.show();
+            }
+            else 
+            {
+                break;
+            }
         }
     }
     cout << "Bye!\n";
@@ -77,7 +143,14 @@ double hmean(double a, double b)
 
 double gmean(double a, double b)
 {
-    if ( a < 0 || b < 0)
+    if (a < 0 || b < 0)
         throw bad_gmean(a, b);
     return std::sqrt(a * b);
+}
+
+double bmean(double a, double b)
+{
+    if (a > b)
+        throw base(a, b);
+    return a + b;
 }
