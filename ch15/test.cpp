@@ -87,70 +87,158 @@
 // 该有一个这样的方法：报告这些值以及函数名。程序使用一个catch块来
 // 捕获基类异常，其中任何一种从该基类异常派生而来的异常都将导致循
 // 环结束。
-#include <iostream>
-#include <cmath>
-#include "test-exc_mean2.h"
+// #include <iostream>
+// #include <cmath>
+// #include "test-exc_mean2.h"
 
-double hmean(double a, double b);
-double gmean(double a, double b);
-double bmean(double a, double b);
+// double hmean(double a, double b);
+// double gmean(double a, double b);
+// double bmean(double a, double b);
+// int main()
+// {
+//     using std::cout;
+//     using std::cin;
+//     using std::endl;
+
+//     double x, y, z;
+
+//     cout << "Enter two numbers: ";
+//     while (cin >> x >> y)
+//     {
+//         try {
+//             z = hmean(x, y);
+//             cout << "Harmonic mean of " << x << " and " << y
+//                  << " is " << z << endl;
+//             z = gmean(x, y);
+//             cout << "Geometric mean of " << x << " and " << y
+//                  << " is " << z << endl;
+//             z = bmean(x, y);
+//             cout << "Base mean of " << x << " and " << y
+//                  << " is " << z << endl;
+//             cout << "Enter next set of numbers <q to quit>: ";
+//         }
+//         catch (base & bg)
+//         {
+//             if (typeid(base) == typeid(bg))
+//             {
+//                 cout << bg.what() << endl;
+//                 bg.show();
+//             }
+//             else 
+//             {
+//                 break;
+//             }
+//         }
+//     }
+//     cout << "Bye!\n";
+//     return 0;
+// }
+
+// double hmean(double a, double b)
+// {
+//     if (a == -b)
+//         throw bad_hmean(a, b);
+//     return 2.0 * a * b / (a + b);
+// }
+
+// double gmean(double a, double b)
+// {
+//     if (a < 0 || b < 0)
+//         throw bad_gmean(a, b);
+//     return std::sqrt(a * b);
+// }
+
+// double bmean(double a, double b)
+// {
+//     if (a > b)
+//         throw base(a, b);
+//     return a + b;
+// }
+
+// 4.程序清单15.16在每个try后面都使用两个catch块，以确保
+// nbad_index异常导致方法label_val( )被调用。请修改该程序，在每个try
+// 块后面只使用一个catch块，并使用RTTI来确保合适时调用label_val( )。
+#include <iostream>
+#include "15.14-sales.h"
+
 int main()
 {
     using std::cout;
     using std::cin;
     using std::endl;
 
-    double x, y, z;
-
-    cout << "Enter two numbers: ";
-    while (cin >> x >> y)
+    double vals1[12] = 
     {
-        try {
-            z = hmean(x, y);
-            cout << "Harmonic mean of " << x << " and " << y
-                 << " is " << z << endl;
-            z = gmean(x, y);
-            cout << "Geometric mean of " << x << " and " << y
-                 << " is " << z << endl;
-            z = bmean(x, y);
-            cout << "Base mean of " << x << " and " << y
-                 << " is " << z << endl;
-            cout << "Enter next set of numbers <q to quit>: ";
-        }
-        catch (base & bg)
+        1220, 1100, 1122, 2212, 1232, 2334,
+        2884, 2393, 3302, 2922, 3002, 3544
+    };
+
+    double vals2[12] = 
+    {
+        12, 11, 22, 21, 32, 34,
+        28, 29, 33, 20, 32, 35
+    };
+
+    Sales sales1(2011, vals1, 12);
+    LabeledSales sales2("Blogstar", 2012, vals2, 12);
+
+    cout << "First try block:\n";
+    try
+    {
+        int i;
+        cout << "Year = " << sales1.Year() << endl;
+        for (i = 0; i < 12; ++i)
         {
-            if (typeid(base) == typeid(bg))
-            {
-                cout << bg.what() << endl;
-                bg.show();
-            }
-            else 
-            {
-                break;
-            }
+            cout << sales1[i] << ' ';
+            if (i % 6 == 5)
+            cout << endl;
+        }
+        cout << "Year = " << sales2.Year() << endl;
+        cout << "Label = " << sales2.Label() << endl;
+        for (i = 0; i <= 12; ++i)
+        {
+            cout << sales2[i] << ' ';
+            if (i % 6 == 5)
+                cout << endl;
+        }
+        cout << "End of try block.\n";
+    }
+    catch(Sales::bad_index & bad)
+    {
+        if (typeid(Sales::bad_index) == typeid(bad))
+        {
+            cout << bad.what();
+            cout << "bad index: " << bad.bi_val() << endl;
+        }
+        else if(typeid(LabeledSales::nbad_index) == typeid(bad))
+        {
+            cout << bad.what();
+            cout << "Company: " << ((LabeledSales::nbad_index &)bad).label_val() << endl;
+            cout << "bad index: " << bad.bi_val() << endl;
         }
     }
-    cout << "Bye!\n";
+    cout << "\nNext try block:\n";
+    try
+    {
+        sales2[2] = 37.5;
+        sales1[20] = 23345;
+        cout << "End of try block 2.\n";
+    }
+    catch(Sales::bad_index & bad)
+    {
+        if (typeid(Sales::bad_index) == typeid(bad))
+        {
+            cout << bad.what();
+            cout << "bad index: " << bad.bi_val() << endl;
+        }
+        else if(typeid(LabeledSales::nbad_index) == typeid(bad))
+        {
+            cout << bad.what();
+            cout << "Company: " << ((LabeledSales::nbad_index &)bad).label_val() << endl;
+            cout << "bad index: " << bad.bi_val() << endl;
+        }
+    }
+    cout << "done\n";
+
     return 0;
-}
-
-double hmean(double a, double b)
-{
-    if (a == -b)
-        throw bad_hmean(a, b);
-    return 2.0 * a * b / (a + b);
-}
-
-double gmean(double a, double b)
-{
-    if (a < 0 || b < 0)
-        throw bad_gmean(a, b);
-    return std::sqrt(a * b);
-}
-
-double bmean(double a, double b)
-{
-    if (a > b)
-        throw base(a, b);
-    return a + b;
 }
