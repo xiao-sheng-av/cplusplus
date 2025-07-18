@@ -49,6 +49,11 @@ int main()
         cout << "Company: " << bad.label_val() << endl;
         cout << "bad index: " << bad.bi_val() << endl;
     }
+    catch(Sales::bad_index & bad)
+    {
+        cout << bad.what();
+        cout << "bad index: " << bad.bi_val() << endl;
+    }
     cout << "\nNext try block:\n";
     try
     {
