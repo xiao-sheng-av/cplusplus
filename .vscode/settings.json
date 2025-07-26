@@ -50,6 +50,7 @@
         "numbers": "cpp",
         "ranges": "cpp",
         "ctime": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "list": "cpp"
     }
 }
