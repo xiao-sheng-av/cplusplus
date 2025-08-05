@@ -128,7 +128,7 @@
 //                 --guesses;
 //                 badchars += letter;
 //             }
-//             else 
+//             else
 //             {
 //                 cout << "Good guess!\n";
 //                 attempt[loc] = letter;
@@ -159,7 +159,6 @@
 //     return 0;
 // }
 
-
 // 4.编写一个具有老式风格接口的函数，其原型如下：
 // int reduce(long ar[], int n);
 // 实参应是数组名和数组中的元素个数。该函数对数组进行排序，删
@@ -167,21 +166,51 @@
 // 数（如果决定使用通用的unique( )函数，请注意它将返回结果区间的结
 // 尾）。使用一个小程序测试该函数。
 
+// #include <iostream>
+// #include <algorithm>
+// int reduce(long ar[], int n);
+// int main()
+// {
+//     long a[5] = {20, 10, 10, 50, 40};
+//     int number = reduce(a, 5);
+//     for (int i = 0; i < number; i++)
+//         std::cout << "a[" << i << "] = " << a[i] << std::endl;
+//     return 0;
+// }
+
+// int reduce(long ar[], int n)
+// {
+//     std::sort(ar, ar + n);
+//     long * a = std::unique(ar, ar + n);
+//     return a - ar;
+// }
+
+// 5、问题与编程练习4相同，但要编写一个模板函数：
+// template <class T>
+// int reduce(T ar[], int n);
+// 在一个使用long实例和string实例的小程序中测试该函数
 #include <iostream>
 #include <algorithm>
-int reduce(long ar[], int n);
+template <class T>
+int reduce(T arp[], int n);
+
 int main()
 {
     long a[5] = {20, 10, 10, 50, 40};
+    std::string s[5] = {"jiege", "jie", "jiejiejie", "jie", "gege"};
     int number = reduce(a, 5);
     for (int i = 0; i < number; i++)
         std::cout << "a[" << i << "] = " << a[i] << std::endl;
+    number = reduce(s, s->size());
+    for (int i = 0; i < number; i++)
+        std::cout << "s[" << i << "] = " << s[i] << std::endl;
     return 0;
 }
 
-int reduce(long ar[], int n)
+template <class T>
+int reduce(T ar[], int n)
 {
     std::sort(ar, ar + n);
-    long * a = std::unique(ar, ar + n);
+    T *a = std::unique(ar, ar + n);
     return a - ar;
 }
