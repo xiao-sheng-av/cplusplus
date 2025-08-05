@@ -51,6 +51,8 @@
         "ranges": "cpp",
         "ctime": "cpp",
         "valarray": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "map": "cpp",
+        "set": "cpp"
     }
 }
