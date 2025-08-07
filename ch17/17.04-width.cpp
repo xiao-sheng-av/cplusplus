@@ -2,6 +2,7 @@
 int main()
 {
     using std::cout;
+    //设置并返回当前的width，并且设置后只用一次就恢复为默认值
     int w = cout.width(30);
     cout << "default field width = " << w << ":\n";
     cout.width(5);
