@@ -85,22 +85,54 @@
 // 3.编写并测试可变参数模板函数sum_value( )，它接受任意长度的
 // 参数列表（其中包含数值，但可以是任何类型），并以long double的方
 // 式返回这些数值的和。
+// #include <iostream>
+// template <typename T>
+// long double sum_value(T value)
+// {
+//     return value;
+// }
+// template <typename T,typename... Args>
+// long double sum_value(T value, const Args... args)
+// {
+//     long double num = (long double)value;
+//     num += sum_value(args...);
+//     return num;
+// }
+
+// int main()
+// {
+//     std::cout << sum_value(11, 33, 42, 28, 22.22, 'a', '3', 22.21) << std::endl;
+//     return 0;
+// }
+
+// 4.使用lambda重新编写程序清单16.15。具体地说，使用一个有名称
+// 的lambda替换函数outint( )，并将函数符替换为两个匿名lambda表达式。
 #include <iostream>
-template <typename T>
-long double sum_value(T value)
-{
-    return value;
-}
-template <typename T,typename... Args>
-long double sum_value(T value, const Args... args)
-{
-    long double num = (long double)value;
-    num += sum_value(args...);
-    return num;
-}
+#include <list>
+#include <iterator>
+#include <algorithm>
+
 
 int main()
 {
-    std::cout << sum_value(11, 33, 42, 28, 22.22, 'a', '3', 22.21) << std::endl;
+    using std::list;
+    using std::cout;
+    using std::endl;
+    auto outint = [](int n) {std::cout << n << " ";};
+    int vals[10] = {50, 100, 90, 180, 60, 210, 415, 88, 188, 201};
+    list<int> yadayada(vals, vals + 10);
+    list<int> etcetera(vals, vals + 10);
+    cout << "Original lists:\n";
+    for_each(yadayada.begin(), yadayada.end(), outint);
+    cout << endl;
+    for_each(etcetera.begin(), etcetera.end(), outint);
+    cout << endl;
+    yadayada.remove_if([](int n){ return n > 100;});
+    etcetera.remove_if([](int n){ return n > 200;});
+    cout << "Trimmed lists:\n";
+    for_each(yadayada.begin(), yadayada.end(), outint);
+    cout << endl;
+    for_each(etcetera.begin(), etcetera.end(), outint);
+    cout << endl;
     return 0;
 }
