@@ -64,19 +64,43 @@
 // 相应成员拼接而成。请提供为移动构造函数和移动赋值运算符实现移动
 // 语义的代码。编写一个使用所有这些方法的程序。为方便测试，让各个
 // 方法都显示特定的内容，以便知道它们被调用。
+// #include <iostream>
+// #include "test-Cpmv.h"
+// int main()
+// {
+//     Cpmv c1;
+//     Cpmv c2("jie", "shen");
+//     Cpmv c3(c2);
+//     Cpmv c4(c3 + c2);
+//     std::cout << "演示拷贝赋值" << std::endl;
+//     c1 = c2;
+//     c1.Display();
+//     std::cout << "演示移动赋值" << std::endl;
+//     c1 = c2 + c4;
+//     c1.Display();
+//     return 0;
+// }
+
+
+// 3.编写并测试可变参数模板函数sum_value( )，它接受任意长度的
+// 参数列表（其中包含数值，但可以是任何类型），并以long double的方
+// 式返回这些数值的和。
 #include <iostream>
-#include "test-Cpmv.h"
+template <typename T>
+long double sum_value(T value)
+{
+    return value;
+}
+template <typename T,typename... Args>
+long double sum_value(T value, const Args... args)
+{
+    long double num = (long double)value;
+    num += sum_value(args...);
+    return num;
+}
+
 int main()
 {
-    Cpmv c1;
-    Cpmv c2("jie", "shen");
-    Cpmv c3(c2);
-    Cpmv c4(c3 + c2);
-    std::cout << "演示拷贝赋值" << std::endl;
-    c1 = c2;
-    c1.Display();
-    std::cout << "演示移动赋值" << std::endl;
-    c1 = c2 + c4;
-    c1.Display();
+    std::cout << sum_value(11, 33, 42, 28, 22.22, 'a', '3', 22.21) << std::endl;
     return 0;
 }
