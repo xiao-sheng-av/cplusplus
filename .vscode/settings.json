@@ -53,6 +53,11 @@
         "valarray": "cpp",
         "list": "cpp",
         "map": "cpp",
-        "set": "cpp"
+        "set": "cpp",
+        "strstream": "cpp",
+        "complex": "cpp",
+        "iomanip": "cpp",
+        "cfenv": "cpp",
+        "cinttypes": "cpp"
     }
 }
